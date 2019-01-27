@@ -1,0 +1,26 @@
+#group:
+#    waqi:
+#      view: false
+#      name: WAQI
+#      entities:
+#        # - sensor.waqi_changning_huayang_shanghai
+#        - sensor.waqi_changning_xianxia_shanghai
+#        - sensor.waqi_chongming_lu_hua_shanghai
+#        - sensor.waqi_city_average_shanghai
+#        - sensor.waqi_fengxian_bay_shanghai
+#        - sensor.waqi_fengxian_fengpu_shanghai
+#        - sensor.waqi_hongkou_jiaxing_shanghai
+#        - sensor.waqi_huangpu_ruijin_shanghai
+#        - sensor.waqi_jiading_fangtai_shanghai
+#        - sensor.waqi_jiading_nanxiang_shanghai
+#        - sensor.waqi_minhang_pujiang_shanghai
+#        - sensor.waqi_pudong_huinan_shanghai
+#        - sensor.waqi_pudong_zhoupu_shanghai
+#        - sensor.waqi_putuo_taopu_shanghai
+#        - sensor.waqi_qingpu_xiayang_shanghai
+#        - sensor.waqi_qingpu_yingpu_shanghai
+#        - sensor.waqi_qingpu_zhujiajiao_shanghai
+#        - sensor.waqi_shanghai
+#        - sensor.waqi_shanghai_us_consulate_shanghai
+#        - sensor.waqi_xujiahui_shanghai
+        

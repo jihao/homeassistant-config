@@ -1,0 +1,103 @@
+##############################################################################
+# The following devices are used by the demo automations, feel free to remove
+# these and/or replace with your own devices
+
+weather:
+  - platform: met
+
+
+
+##############################################################################
+# Create a group for the lights
+group:
+  light_toggle_group:
+    name: Light Toggle Group
+    view: no
+    entities:
+      - switch.wall_switch_left_158d00024c157a
+      - switch.wall_switch_right_158d00024c157a
+      
+scene:
+- name: Lights On
+  entities:
+    switch.wall_switch_left_158d00024c157a:
+      state: on
+      # brightness: 255
+    switch.wall_switch_right_158d00024c157a:
+      state: on
+      # brightness: 255
+    light.gateway_light_7811dcdace20:
+      state: on
+      brightness: 255
+    light.plate01_backlight:
+      state: on
+      brightness: 255
+
+- name: Daylight
+  entities:
+    switch.wall_switch_left_158d00024c157a:
+      state: on
+      # brightness: 150
+    switch.wall_switch_right_158d00024c157a:
+      state: on
+      # brightness: 150
+    light.gateway_light_7811dcdace20:
+      state: on
+      brightness: 150
+    light.plate01_backlight:
+      state: on
+      brightness: 150
+
+- name: Night
+  entities:
+    switch.wall_switch_left_158d00024c157a:
+      state: on
+      # brightness: 50
+    switch.wall_switch_right_158d00024c157a:
+      state: on
+      # brightness: 50
+    light.gateway_light_7811dcdace20:
+      state: on
+      brightness: 50
+    light.plate01_backlight:
+      state: on
+      brightness: 50
+
+- name: Lights Off
+  entities:
+    switch.wall_switch_left_158d00024c157a:
+      state: off
+    switch.wall_switch_right_158d00024c157a:
+      state: off
+    light.gateway_light_7811dcdace20:
+      state: off
+    light.plate01_backlight:
+      state: on
+      brightness: 20
+
+automation:
+  - alias: hasp_plate01_00_LCDUpdate
+    trigger: []
+    condition:
+    # - condition: template
+    #   value_template: '{{ states.sensor.plate01_status.attributes.updateLcdAvailable == true }}'
+    - condition: state
+      entity_id: 'binary_sensor.plate01_connected'
+      state: 'on'
+    action:
+    - service: mqtt.publish
+      data_template:
+        topic: 'hasp/plate01/command/lcdupdate'
+        payload: 'http://192.168.2.110:8123/local/HASwitchPlate.tft'
+
+  - alias: hasp_plate01_00_get_text
+    trigger: []
+    condition:
+    - condition: state
+      entity_id: 'binary_sensor.plate01_connected'
+      state: 'on'
+    action:
+    - service: mqtt.publish
+      data_template:
+        topic: 'hasp/plate01/command/p[1].b[3].txt'
+        payload: ''

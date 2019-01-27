@@ -1,0 +1,169 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 31.25820352007197
+  longitude: 121.52811240069515
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Asia/Shanghai
+  # Customization file
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+  # Customize entities matching a pattern
+  # customize_glob:
+  #   "switch.wall_switch_*":
+  #     icon: mdi:lightbulb
+      
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  api_password: !secret api_password
+#   base_url: example.duckdns.org:8123
+
+mqtt:
+  password: !secret mqtt_password
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+ios:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+logger:
+  default: warn
+
+recorder:
+  purge_keep_days: 7
+  purge_interval: 1
+  exclude:
+    domains:
+      - sensor
+    entities:
+      - weather.localweather
+      - camera.dafang
+      - sun.sun
+  include:
+    entities:
+      - sensor.illumination_livingroom
+      - sensor.temperature_158d00020d78e3
+      - sensor.humidity_158d00020d78e3
+      - sensor.yr_symbol
+      - sensor.waqi_shanghai_us_consulate_shanghai
+      - sensor.waqi_city_average_shanghai
+      - sensor.waqi_changning_xianxia_shanghai
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://192.168.2.110:3218
+
+lovelace:
+  mode: yaml
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+  
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: yr
+#  - platform: random
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+   # 空气质量
+  - platform: waqi
+    token: '7bf9d140d0293dcb64447fe60fb448eadcaf6cd5'
+    locations:
+        - shanghai
+
+camera:
+  - platform: ffmpeg
+    name: DaFang
+    input: -rtsp_transport tcp -i rtsp://192.168.2.117:8554/unicast
+  
+media_player:
+  - platform: vlc
+  #- platform: braviatv
+  #  host: 192.168.2.111
+  #- platform: mpd
+  #  host: 127.0.0.1
+
+xiaomi_aqara:
+  # 安装ha设备的ip地址
+  interface: 192.168.2.110           
+  gateways:
+    #小米网关的局域网传输协议密钥
+    key: cr4wc7n193jpb4fd           
+
+emulated_hue_charley:
+  host_ip: 192.168.2.110
+  listen_port: 80
+  type: dingdong
+  auto_link: true
+  expose_by_default: true
+
+homekit:
+  filter:
+    include_domains:
+      - switch
+      - light
+    include_entities:
+      - binary_sensor.switch_158d00026bb461
+      - sensor.humidity_158d00020d78e3
+      - sensor.temperature_158d00020d78e3
+      - sensor.illumination_livingroom
+
+# Text to speech
+#tts:
+#  - platform: google
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+zone:
+  # This will override the default home zone
+  - name: Home
+    latitude: 31.2582035
+    longitude: 121.52811240
+    radius: 100
+    icon: mdi:home

@@ -1,0 +1,17 @@
+- id: '1528556898770'
+  alias: lifesuggest
+  trigger:
+  - entity_id: automation.door_dip
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: 07:00:00
+    before: 09:00:00
+    condition: time
+  action:
+  - data_template:
+      message: 今天{{ states.sensor.suggestion_flu.state}}感冒，{{ states.sensor.suggestion_flu.attributes["建议"]
+        }}，此外今天{{ states.sensor.suggestion_uv.attributes["建议"] }}，Home Assistant 祝您生活愉快
+    service: tts.baidu_say
+

@@ -1,0 +1,17 @@
+.HA_VERSION
+home-assistant.db
+home-assistant.log
+home-assistant_v2.db
+secrets.yaml
+/tts/
+/deps/*
+.uuid
+/private/*
+.homekit.state
+.ios.conf
+/.storage/*
+known_devices.yaml
+ngrok
+emulated_hue_ids.json
+.idea/*
+__pycache__/*

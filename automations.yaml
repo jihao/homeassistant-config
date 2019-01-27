@@ -1,0 +1,252 @@
+# - alias: 打开夜灯
+#   trigger:
+#     platform: sun
+#     event: sunset
+#     offset: -01:00:00
+#   condition:
+#     condition: numeric_state
+#     entity_id: sensor.illumination_livingroom
+#     below: 400
+#   action:
+#     service: light.turn_on
+#     data:
+#       entity_id: light.gateway_light_7811dcdace20
+#   id: ec8ec054873340a2a00997166bee2688
+  
+# - alias: 关闭夜灯
+#   trigger:
+#     platform: sun
+#     event: sunrise
+#     offset: +00:00:00
+#   condition:
+#     condition: numeric_state
+#     entity_id: sensor.illumination_livingroom
+#     above: 400
+#   action:
+#     service: light.turn_off
+#     data:
+#       entity_id: light.gateway_light_7811dcdace20
+#   id: cdc443e4983a408b86cc18fd7f6d143d
+  
+- alias: 每天备份 1:00 AM
+  trigger:
+    platform: time
+    at: 01:00:00
+  action:
+    service: hassio.snapshot_full
+    data_template:
+      name: backup-{{ now().strftime('%Y-%m-%d') }}
+
+  
+- alias: 定时重启 2:00 AM
+  trigger:
+    platform: time
+    at: 02:00:00
+  action:
+    service: homeassistant.restart
+
+  
+- id: turn_off_light_when_sun_rise
+  alias: 天亮自动关夜灯 A
+  trigger:
+      platform: sun
+      event: sunrise
+      offset: '+00:00:00'
+  condition:
+     condition: numeric_state
+     entity_id: sensor.illumination_livingroom
+     above: 400
+  action:
+    - service: persistent_notification.create
+      data:
+        message: "太阳升起关闭夜灯"
+    - service: light.turn_off
+      data:
+        entity_id: light.gateway_light_7811dcdace20
+        
+- id: turn_on_light_when_sun_set
+  alias: 天黑自动开夜灯 B
+  trigger:
+      platform: sun
+      event: sunset
+      offset: '+00:00:00'
+  condition:
+     condition: numeric_state
+     entity_id: sensor.illumination_livingroom
+     below: 400
+  action:
+    - service: persistent_notification.create
+      data:
+        message: "太阳落下打开夜灯"
+    - service: light.turn_on
+      data:
+        entity_id: light.gateway_light_7811dcdace20
+
+- alias: 出门1：天气提醒 DEMO
+  trigger:
+    platform: time
+    at: 08:00:00
+  action:
+    service: persistent_notification.create
+    data:
+      message: "出门1：天气提醒，出门记得带伞"
+
+- alias: 出门2：自动关灯 DEMO
+  trigger:
+    platform: time
+    at: 08:00:00
+  action:
+    service: persistent_notification.create
+    data:
+      message: "出门2：自动关灯"
+
+- alias: 回家1：下班前半小时打开空调 DEMO
+  trigger:
+    platform: time
+    at: 06:00:00 
+  action:
+    service: persistent_notification.create
+    data:
+      message: "回家1：下班前半小时打开空调"
+
+- alias: 回家2：进门自动开灯 DEMO
+  trigger:
+    platform: time
+    at: 06:00:00 
+  action:
+    service: persistent_notification.create
+    data:
+      message: "回家2：自动开灯"
+
+# WAQI 空气质量 - 灯带联动， 请修改灯带的entity_id
+# 0-50显示绿色，51-100显示黄色，101-150显示橙色，151-200显示红色，201-300显示紫色，300+显示酒红色
+- id: waqi_2_led_strip_1
+  alias: WAQI1 空气质量 - 灯带 - 绿
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.waqi_changning_xianxia_shanghai
+    above: 0
+    below: 51
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 50
+        rgb_color: [0, 255, 0]
+        entity_id:
+          - light.gateway_light_7811dcdace20
+
+- id: waqi_2_led_strip_2
+  alias: WAQI2 空气质量 - 灯带 - 黄
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.waqi_changning_xianxia_shanghai
+    above: 50
+    below: 101
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 50
+        rgb_color: [255, 255, 0]
+        entity_id:
+          - light.gateway_light_7811dcdace20
+
+- id: waqi_2_led_strip_3
+  alias: WAQI3 空气质量 - 灯带 - 橙
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.waqi_changning_xianxia_shanghai
+    above: 100
+    below: 151
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 50
+        rgb_color: [255, 160, 0]
+        entity_id:
+          - light.gateway_light_7811dcdace20
+
+- id: waqi_2_led_strip_4
+  alias: WAQI4 空气质量 - 灯带 - 红
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.waqi_changning_xianxia_shanghai
+    above: 150
+    below: 201
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 50
+        rgb_color: [255, 0, 0]
+        entity_id:
+          - light.gateway_light_7811dcdace20
+
+- id: waqi_2_led_strip_5
+  alias: WAQI5 空气质量 - 灯带 - 紫
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.waqi_changning_xianxia_shanghai
+    above: 200
+    below: 301
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 50
+        rgb_color: [128, 0, 128]
+        entity_id:
+          - light.gateway_light_7811dcdace20
+
+- id: waqi_2_led_strip_6
+  alias: WAQI6 空气质量 - 灯带 - 酒红
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.waqi_changning_xianxia_shanghai
+    above: 300
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 10
+        rgb_color: [139, 0, 0]
+        entity_id:
+          - light.gateway_light_7811dcdace20
+
+# 回家场景1：使用手机定位或者device_tracker
+- id: enter_home_zone_device
+  alias: '回家场景1'
+  trigger:
+    platform: state
+    entity_id: device_tracker.hao_iphone
+    from: 'not_home'
+    # Optional
+    to: 'home'
+  action:
+    - service: notify.notify
+      data:
+        message: '我回家了，开客厅灯，开背景音乐'
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.living_room
+
+# 回家场景2：使用门窗感应器+人体传感器, 如果需要可以再加上时间条件
+- id: enter_home_zone_sensor
+  alias: '回家场景2'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d000204b9d2
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: binary_sensor.motion_sensor_158d000abcdefc2
+    state: 'off'
+    # trigger only if state was this for last 10 minutes.
+    for:
+      minutes: 10
+  action:
+    - service: notify.notify
+      data:
+        message: '我回家了，开客厅灯，开背景音乐'
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.living_room

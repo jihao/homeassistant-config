@@ -1,0 +1,48 @@
+sensor.waqi_changning_huayang_shanghai:
+  hidden: true
+sensor.waqi_changning_xianxia_shanghai:
+  hidden: true
+sensor.waqi_chongming_lu_hua_shanghai:
+  hidden: true
+sensor.waqi_city_average_shanghai:
+  hidden: true
+sensor.waqi_fengxian_bay_shanghai:
+  hidden: true
+sensor.waqi_fengxian_fengpu_shanghai:
+  hidden: true
+sensor.waqi_hongkou_jiaxing_shanghai:
+  hidden: true
+sensor.waqi_huangpu_ruijin_shanghai:
+  hidden: true
+sensor.waqi_jiading_fangtai_shanghai:
+  hidden: true
+sensor.waqi_jiading_nanxiang_shanghai:
+  hidden: true
+sensor.waqi_minhang_pujiang_shanghai:
+  hidden: true
+sensor.waqi_pudong_huinan_shanghai:
+  hidden: true
+sensor.waqi_pudong_zhoupu_shanghai:
+  hidden: true
+sensor.waqi_putuo_taopu_shanghai:
+  hidden: true
+sensor.waqi_qingpu_xiayang_shanghai:
+  hidden: true
+sensor.waqi_qingpu_yingpu_shanghai:
+  hidden: true
+sensor.waqi_qingpu_zhujiajiao_shanghai:
+  hidden: true
+sensor.waqi_shanghai:
+  hidden: true
+sensor.waqi_shanghai_us_consulate_shanghai:
+  friendly_name: 美领馆
+  hidden: false
+sensor.waqi_xujiahui_shanghai:
+  hidden: true
+
+switch.wall_switch_left_158d00024c157a:
+  icon: mdi:lightbulb
+switch.wall_switch_right_158d00024c157a:
+  icon: mdi:lightbulb
+
+

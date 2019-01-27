@@ -1,0 +1,811 @@
+resources:
+  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v0
+    type: js
+  - url: /local/custom_ui/weather-card.js
+    type: js
+  - url: /local/custom_ui/datetime-card.js
+    type: js
+  - url: /local/custom_ui/temp-humid-card.js
+    type: js
+  - url: /local/custom_ui/aqi-card.js
+    type: js
+  - url: /local/custom_ui/slider-entity-row.js
+    type: js
+  - url: /local/custom_ui/entity-attributes-card.js
+    type: js
+  - url: /local/custom_ui/card-modder.js
+    type: js
+  - url: /local/custom_ui/card-wrapper.js
+    type: js
+  - url: /local/custom_ui/monster-card.js
+    type: js
+  - url: /local/custom_ui/light-toggle-card.js
+    type: module
+
+title: 我家
+
+views:
+
+# TAB 主页
+  - icon: mdi:home-outline
+    panel: true
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:compact-custom-header
+          - type: picture-elements
+            #image: /local/layouts/view_default_1280x740-flat2.png
+            image: /local/layouts/home_1280x740.png
+            elements:
+              
+              - type: custom:datetime-card
+                entity_date: sensor.date
+                entity_time: sensor.time
+                style:
+                  top: 7%
+                  left: 12.6%
+                  width: 25%
+
+              - type: custom:temp-humid-card
+                entity_temperature: sensor.temperature_158d00020d78e3
+                entity_humidity: sensor.humidity_158d00020d78e3
+                style:
+                  top: 20%
+                  left: 12.6%
+                  width: 25%
+                  height: 100px
+
+              - type: custom:weather-card
+                entity_weather: weather.shanghai
+                entity_sun: sun.sun
+                style:
+                  top: 38%
+                  left: 12.6%
+                  width: 25%
+              
+              # waqi AQI 卡片    
+              - type: custom:aqi-card
+                entity_waqi: sensor.waqi_shanghai_us_consulate_shanghai
+                style:
+                  top: 70%
+                  left: 12.6%
+                  width: 25%
+                  font-size: 2.8em
+
+              ###  右边灯光控制面板
+              - type: custom:light-toggle-card
+                entities:
+                  - light.gateway_light_7811dcdace20
+                  - switch.wall_switch_left_158d00024c157a
+                  - switch.wall_switch_right_158d00024c157a
+                  - switch.front_door
+                style:
+                  top: 15%
+                  right: -8%
+                  width: 20%
+                  font-size: 1.5em
+
+              # ### FLOORPLAN LIGHTS
+              - type: image
+                entity: switch.bedroom1
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 65%
+                  left: 40%
+                  width: 4%
+
+              - type: image
+                entity: switch.bedroom2
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 25%
+                  left: 40%
+                  width: 4%
+
+              - type: image
+                entity: switch.wall_switch_left_158d00024c157a
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 55%
+                  left: 60%
+                  width: 5%
+
+              - type: image
+                entity: switch.bathroom
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 25%
+                  left: 50%
+                  width: 4%
+
+              - type: image
+                entity: light.gateway_light_7811dcdace20
+                tap_action: 
+                  action: toggle
+                hold_action: more-info
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 42%
+                  left: 37.7%
+                  width: 3%
+
+              - type: image
+                entity: light.gateway_light_7811dcdace20
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 42%
+                  left: 30.6%
+                  width: 3%
+
+              # 床头灯
+              - type: image
+                entity: group.bedroom_reading_light
+                tap_action: 
+                  action: toggle
+                hold_action: more-info
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 50%
+                  left: 28%
+                  width: 3%
+              - type: image
+                entity: group.bedroom_reading_light
+                tap_action: 
+                  action: toggle
+                hold_action: more-info
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 75%
+                  left: 28%
+                  width: 3%
+
+              - type: image
+                entity: switch.kitchen_light
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 25%
+                  left: 68.5%
+                  width: 3%
+
+              # 饭桌灯
+              - type: image
+                entity: switch.dinner_light
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 50%
+                  left: 54%
+                  width: 3%
+              - type: image
+                entity: switch.dinner_light
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 50%
+                  left: 52%
+                  width: 3%
+              - type: image
+                entity: switch.dinner_light
+                tap_action: 
+                  action: toggle
+                image: /local/assets/lightbulb.png
+                state_image:
+                  "off": /local/assets/lightbulb.png
+                  "on": /local/assets/lightbulb_on.png
+                style:
+                  top: 50%
+                  left: 50%
+                  width: 3%
+
+              - type: image
+                entity: switch.christmas_tree
+                tap_action: 
+                  action: toggle
+                state_image:
+                  "off": /local/assets/christmas_tree.png
+                  "on": /local/assets/christmas_tree_on.png
+                style:
+                  top: 43.5%
+                  left: 61.5%
+                  width: 3%
+              # ### FLOORPLAN FANS  风扇
+              #  - type: image
+              #    entity: switch.living_room_fan
+              #    image: /local/assets/fan.png
+              #    tap_action: 
+              #     action: toggle
+              #    state_image:
+              #     "on": /local/assets/fan_on.png
+              #    style:
+              #     top: 65%
+              #     left: 60%
+              #     width: 5%
+
+              #  - type: image
+              #    entity: switch.bathroom_fan
+              #    image: /local/assets/fan.png
+              #    tap_action: 
+              #     action: toggle
+              #    state_image:
+              #     "on": /local/assets/fan_on.png
+              #    style:
+              #     top: 25%
+              #     left: 55%
+              #     width: 3%
+              # ### FLOORPLAN MOTION 人体感应器
+              #  - type: image
+              #    entity: binary_sensor.occupancy_front_door
+              #    image: /local/assets/motion.png
+              #    state_image:
+              #     "off": /local/assets/motion.png
+              #     "on": /local/assets/motion_detected.png
+              #    style:
+              #     top: 40%
+              #     left: 80%
+              #     width: 2%
+
+              #  - type: image
+              #    entity: binary_sensor.occupancy_living_room
+              #    image: /local/assets/motion.png
+              #    state_image:
+              #     "off": /local/assets/motion.png
+              #     "on": /local/assets/motion_detected.png
+              #    style:
+              #     top: 50%
+              #     left: 65%
+              #     width: 2%
+
+              #  - type: image
+              #    entity: binary_sensor.bathroom_occupancy
+              #    image: /local/assets/motion.png
+              #    state_image:
+              #     "off": /local/assets/motion.png
+              #     "on": /local/assets/motion_detected.png
+              #    style:
+              #     top: 20%
+              #     left: 55%
+              #     width: 2%
+              # ### ROOM TEMPERATURES 各个房间温度
+              # #  - type: state-label
+              # #    entity: sensor.office_temperature
+              # #    style:
+              # #     top: 84.3%
+              # #     left: 33%
+              # #     font-size: .8em
+              # #     color: rgba(202,217,235,.5)
+
+              # #  - type: state-label
+              # #    entity: sensor.downstairs_temperature
+              # #    style:
+              # #     top: 49%
+              # #     left: 41%
+              # #     font-size: .8em
+              # #     color: rgba(202,217,235,.5)
+
+              # #  - type: state-label
+              # #    entity: sensor.master_bedroom_temperature
+              # #    style:
+              # #     top: 24.2%
+              # #     left: 72.6%
+              # #     font-size: .8em
+              # #     color: rgba(202,217,235,.5)
+
+              # #  - type: state-label
+              # #    entity: sensor.olivers_room_temperature
+              # #    style:
+              # #     top: 43.8%
+              # #     left: 91.3%
+              # #     font-size: .8em
+              # #     color: rgba(202,217,235,.5)
+
+              # #  - type: state-label
+              # #    entity: sensor.harveys_room_temperature
+              # #    style:
+              # #     top: 62%
+              # #     left: 88.3%
+              # #     font-size: .8em
+              # #     color: rgba(202,217,235,.5)
+              
+              # ### BOTTOM RIGHT BUTTON CLUSTER 摄像头
+              #  - type: image
+              #    entity: camera.driveway_ptz
+              #    image: /local/assets/button_short_invisible.png
+              #    style:
+              #     top: 97%
+              #     left: 91%
+              #     width: 19%
+              #  - type: image
+              #    entity: camera.harveys_room
+              #    image: /local/assets/button_short_invisible.png
+              #    style:
+              #      top: 90%
+              #      left: 91%
+              #      width: 19%
+              #  - type: image
+              #    entity: camera.olivers_room
+              #    image: /local/assets/button_short_invisible.png
+              #    style:
+              #     top: 83.1%
+              #     left: 91%
+              #     width: 19%
+              
+              #  ### SPEEDTEST
+              #  - type: state-label
+              #    entity: sensor.speedtest_ping
+              #    prefix: "ping: "
+              #    style:
+              #      top: 98.5%
+              #      left: 74%
+              #      font-size: 1em
+              #      text-align: left
+              #      width: 160px
+              #      color: rgba(202,217,235,.25)
+              #      font-style: italic
+
+              #  - type: state-label
+              #    entity: sensor.speedtest_download
+              #    prefix: "dl: "
+              #    style:
+              #      top: 98.5%
+              #      left: 49%
+              #      font-size: 1em
+              #      text-align: left
+              #      width: 160px
+              #      color: rgba(202,217,235,.25)
+              #      font-style: italic
+
+              #  - type: state-label
+              #    entity: sensor.speedtest_upload
+              #    prefix: "ul: "
+              #    style:
+              #      top: 98.5%
+              #      left: 63%
+              #      font-size: 1em
+              #      text-align: left
+              #      width: 160px
+              #      color: rgba(202,217,235,.25)
+              #      font-style: italic
+
+# Tab 概览
+  - title: '概览'
+    icon: mdi:blur
+    panel: true
+    cards:
+      - type: vertical-stack
+        cards:
+
+        - type: custom:monster-card
+          card:
+            type: glance
+            title: 灯光和开关
+          filter:
+            include:
+              - domain: light
+              - domain: switch
+
+        - type: custom:monster-card
+          card:
+            type: glance
+            title: 空气质量
+            # unit: '%'
+            # severity:
+            #   green: 0
+            #   yellow: 45
+            #   red: 85
+          filter:
+            include:
+              - entity_id: "sensor.waqi_city_average_shanghai"
+              - entity_id: "sensor.waqi_changning_xianxia_shanghai"
+              - entity_id: "sensor.waqi_shanghai_us_consulate_shanghai"
+            
+        - type: custom:monster-card
+          card:
+            type: glance
+            title: 和风天气
+          filter:
+            include:
+              - entity_id: "*heweather*"
+
+
+
+# Tab 灯光控制
+  - title: '灯光控制'
+    icon: mdi:lightbulb-on-outline
+
+    cards:
+      
+      - type: vertical-stack
+        cards:
+        
+        - type: markdown
+          content: '## 客厅'
+        - type: light
+          entity: light.gateway_light_7811dcdace20
+          name: '可调色灯带'
+        - type: entities
+          entities:
+          - entity: light.gateway_light_7811dcdace20
+            type: entity
+            name: '主照明灯'
+          - entity: light.gateway_light_7811dcdace20
+            type: entity
+            name: '餐桌灯'
+          - entity: light.gateway_light_7811dcdace20
+            type: entity
+            name: '灯A'
+          - entity: light.gateway_light_7811dcdace20
+            type: entity
+            name: '灯B'
+
+      - type: vertical-stack
+        cards:
+        - type: markdown
+          content: '## 主卧'
+        - type: light
+          entity: light.gateway_light_7811dcdace20
+          name: '顶灯'
+        - type: light
+          entity: light.gateway_light_7811dcdace20
+          name: '阅读灯'
+        - type: custom:slider-entity-row
+          entity: light.gateway_light_7811dcdace20
+          name: '灯1'
+        - type: custom:slider-entity-row
+          entity: light.gateway_light_7811dcdace20
+          name: '灯2'
+        
+      - type: vertical-stack
+        cards:
+        - type: markdown
+          content: '## 次卧'
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            entity: light.gateway_light_7811dcdace20
+            name: '阅读灯A'
+          - type: entity-button
+            entity: light.gateway_light_7811dcdace20
+            name: '阅读灯B'
+          - type: entity-button
+            entity: light.gateway_light_7811dcdace20
+        - type: entities
+          entities:
+          
+          - type: entity
+            entity: light.gateway_light_7811dcdace20
+            name: '阅读灯A'
+          - type: entity
+            entity: light.gateway_light_7811dcdace20
+            name: '阅读灯B'
+          - type: entity
+            entity: light.gateway_light_7811dcdace20
+            name: '顶灯'
+
+      - type: entities
+        title: '门厅灯组'
+        entities:
+        - type: entity
+          entity: light.gateway_light_7811dcdace20
+          name: '灯A'
+        - type: entity
+          entity: light.gateway_light_7811dcdace20
+          name: '灯B'
+        - type: entity
+          entity: light.gateway_light_7811dcdace20
+          name: '灯C'
+
+# Tab 温度控制
+  - title: '温度控制'
+    icon: mdi:oil-temperature
+
+    cards:
+      - type: entities
+        title: 温度控制
+        entities:
+          - entity: climate.nest
+            type: thermostat
+
+
+  # Tab 窗帘，支持开闭，位置值
+  - title: '窗帘'
+    icon: mdi:arrow-collapse-horizontal
+    cards:
+        - type: vertical-stack
+          cards:
+          - type: markdown
+            content: '## 客厅'
+          - type: entities
+            entities:
+            # 请修改窗帘entity
+            - entity: cover.living_room_cover_left
+              type: custom:slider-entity-row
+              name: '左'
+              toggle: true
+            - entity: cover.living_room_cover_right
+              type: custom:slider-entity-row
+              name: '右'
+              toggle: true
+            
+        - type: vertical-stack
+          cards:
+          - type: markdown
+            content: '## 主卧'
+          - type: entities
+            entities:
+            # 请修改窗帘entity
+            - entity: light.gateway_light_7811dcdace20
+              type: custom:slider-entity-row
+              name: '左'
+              toggle: true
+            - entity: light.gateway_light_7811dcdace20
+              type: custom:slider-entity-row
+              name: '右'
+              toggle: true
+
+        - type: vertical-stack
+          cards:
+          - type: markdown
+            content: '## 次卧'
+          - type: entities
+            entities:
+            # 请修改窗帘entity
+            - entity: light.gateway_light_7811dcdace20
+              type: custom:slider-entity-row
+              name: '左'
+              toggle: true
+            - entity: light.gateway_light_7811dcdace20
+              type: custom:slider-entity-row
+              name: '右'
+              toggle: true
+        - type: vertical-stack
+          cards:
+          - type: markdown
+            content: '## 阳台'
+          - type: entities
+            entities:
+            # 请修改窗帘entity
+            - entity: light.gateway_light_7811dcdace20
+              type: custom:slider-entity-row
+              name: '左'
+              toggle: true
+            - entity: light.gateway_light_7811dcdace20
+              type: custom:slider-entity-row
+              name: '右'
+              toggle: true
+
+# Tab 天气全屏
+  - title: '天气1'
+    icon: mdi:weather-cloudy
+    panel: true
+    cards:
+      - type: horizontal-stack
+        cards:
+
+          - type: vertical-stack
+            cards:
+            - type: weather-forecast
+              entity: weather.shanghai
+            - type: entities
+              title: 空气质量
+              entities:
+                - entity: sensor.waqi_shanghai_us_consulate_shanghai
+                  name: AQI 上海美领馆
+                - type: custom:entity-attributes-card
+                  entity: sensor.waqi_shanghai_us_consulate_shanghai
+                  filter:
+                    include:
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.*
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.dominentpol
+                        name: 主要污染物
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.nitrogen_dioxide
+                        name: 二氧化氮
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.ozone
+                        name: 臭氧
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.humidity
+                        name: 湿度
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.sulfur_dioxide
+                        name: 二氧化硫
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.co
+                        name: 一氧化碳
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.temperature
+                        name: 温度
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.time
+                        name: 更新时间
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.pressure
+                        name: 气压 
+                    exclude:
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.attribution
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.icon
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.hidden
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.unit_of_measurement
+                      - key: sensor.waqi_shanghai_us_consulate_shanghai.friendly_name
+          # 自定义组件改变布局
+          - type: custom:card-wrapper
+            tagStyle:
+              flex-grow: 2
+            card:
+              type: iframe
+              url: https://embed.windy.com/embed2.html
+              aspect_ratio: 75%
+
+
+# Tab 天气
+  # - title: '天气2'
+  #   icon: mdi:weather-cloudy
+
+  #   cards:
+  #     - type: weather-forecast
+  #       entity: weather.yweather
+
+  #     - type: entities
+  #       title: 空气质量
+  #       entities:
+  #         - entity: sensor.waqi_shanghai_us_consulate_shanghai
+  #           name: AQI 上海美领馆
+  #         - type: custom:entity-attributes-card
+  #           entity: sensor.waqi_shanghai_us_consulate_shanghai
+  #           filter:
+  #             include:
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.*
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.dominentpol
+  #                 name: 主要污染物
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.nitrogen_dioxide
+  #                 name: 二氧化氮
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.ozone
+  #                 name: 臭氧
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.humidity
+  #                 name: 湿度
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.sulfur_dioxide
+  #                 name: 二氧化硫
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.co
+  #                 name: 一氧化碳
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.temperature
+  #                 name: 温度
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.time
+  #                 name: 更新时间
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.pressure
+  #                 name: 气压
+
+  #             exclude:
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.attribution
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.icon
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.hidden
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.unit_of_measurement
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.friendly_name
+      
+  #     - type: iframe
+  #       url: https://embed.windy.com/embed2.html
+  #       aspect_ratio: 75%
+  #       style: 
+  #         max-width: 100%
+
+
+
+
+  - title: 自动化
+    icon: mdi:home-automation
+    cards:
+    - type: custom:monster-card
+      show_empty: false
+      card:
+        type: entities
+        title: 离家场景
+      filter:
+        include:
+          - domain: automation
+            name: '出门*'
+
+    - type: custom:monster-card
+      show_empty: false
+      card:
+        type: entities
+        title: 回家场景
+      filter:
+        include:
+          - domain: automation
+            name: '回家*'
+
+    - type: custom:monster-card
+      show_empty: false
+      card:
+        type: entities
+        title: 定时任务
+      filter:
+        include:
+          - domain: automation
+            name: '天*'
+          - domain: automation
+            name: '*重启*'
+          - domain: automation
+            name: '*备份*'
+
+  - title: Cameras
+    icon: mdi:video
+    panel: true
+    cards:
+    - type: picture-elements
+      image: /local/assets/generic_background_1280x750.png
+      elements:
+      - type: image
+        entity: camera.driveway_ptz
+        camera_image: camera.driveway_ptz
+        style:
+         top: 25%
+         left: 25%
+         width: 49%
+
+      - type: image
+        entity: camera.garage
+        camera_image: camera.garage
+        style:
+         top: 25%
+         left: 75%
+         width: 49%
+
+      - type: image
+        entity: camera.harveys_room
+        camera_image: camera.harveys_room
+        style:
+         top: 75%
+         left: 25%
+         width: 49%
+
+      - type: image
+        entity: camera.olivers_room
+        camera_image: camera.olivers_room
+        style:
+         top: 75%
+         left: 75%
+         width: 49%
+
+
+
+
+       

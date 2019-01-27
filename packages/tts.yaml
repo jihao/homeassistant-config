@@ -1,0 +1,10 @@
+tts:
+  - platform: baidu
+    app_id: !secret tts_baidu_appid 
+    api_key: !secret tts_baidu_api 
+    secret_key: !secret tts_baidu_secret 
+    
+
+
+
+

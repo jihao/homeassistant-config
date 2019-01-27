@@ -1,0 +1,20 @@
+.clear {
+  clear: both;
+}
+
+ha-card.datetime {
+  background-color: transparent;
+  text-align: center;
+}
+
+.time {
+  font-weight: 500;
+  font-size: 4em;
+  color: whitesmoke;
+}
+
+.date {
+  font-weight: 400;
+  font-size: 2em;
+  color: whitesmoke;
+}

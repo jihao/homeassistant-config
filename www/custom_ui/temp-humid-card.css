@@ -1,0 +1,14 @@
+.clear {
+  clear: both;
+}
+
+ha-card.temp-humid {
+  background-color: transparent;
+  text-align: center;
+}
+
+.temp-humid-text {
+  font-weight: 200;
+  font-size: 2em;
+  color: whitesmoke;
+}
