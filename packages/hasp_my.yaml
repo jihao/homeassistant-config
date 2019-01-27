@@ -76,7 +76,7 @@ scene:
       brightness: 20
 
 automation:
-  - alias: hasp_plate01_00_LCDUpdate
+  - alias: "hasp_plate01 升级串口屏"
     trigger: []
     condition:
     # - condition: template
@@ -88,7 +88,7 @@ automation:
     - service: mqtt.publish
       data_template:
         topic: 'hasp/plate01/command/lcdupdate'
-        payload: 'http://192.168.2.110:8123/local/HASwitchPlate.tft'
+        payload: 'http://192.168.2.110:8123/local/HASwitchPlate-TJC3224T028_011.tft'
 
   - alias: hasp_plate01_00_get_text
     trigger: []

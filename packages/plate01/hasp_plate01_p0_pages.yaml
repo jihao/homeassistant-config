@@ -160,56 +160,56 @@ automation:
 ##############################################################################
 # Set page button text across all pages to the value selected in the interface
 
-# set page button text on each page to hasp-plate01-PageButton1Label
-  - alias: hasp_plate01_p0_PageButton1_Text
-    trigger:
-    - platform: state
-      entity_id: input_text.hasp_plate01_pagebutton1label
-    - platform: state
-      entity_id: 'binary_sensor.plate01_connected'
-      to: 'on'
-    - platform: homeassistant
-      event: start
-    action:
-    - service: mqtt.publish
-      data:
-        topic: 'hasp/plate01/command/json'
-        payload_template: >-
-          [{%- for i in range(1,10) -%}"p[{{i}}].b[1].txt=\"{{states.input_text.hasp_plate01_pagebutton1label.state}}\"",{%- endfor -%}]
+## set page button text on each page to hasp-plate01-PageButton1Label
+#   - alias: hasp_plate01_p0_PageButton1_Text
+#     trigger:
+#     - platform: state
+#       entity_id: input_text.hasp_plate01_pagebutton1label
+#     - platform: state
+#       entity_id: 'binary_sensor.plate01_connected'
+#       to: 'on'
+#     - platform: homeassistant
+#       event: start
+#     action:
+#     - service: mqtt.publish
+#       data:
+#         topic: 'hasp/plate01/command/json'
+#         payload_template: >-
+#           [{%- for i in range(1,10) -%}"p[{{i}}].b[1].txt=\"{{states.input_text.hasp_plate01_pagebutton1label.state}}\"",{%- endfor -%}]
 
-# set page button text on each page to hasp-plate01-PageButton2Label
-  - alias: hasp_plate01_p0_PageButton2_Text
-    trigger:
-    - platform: state
-      entity_id: input_text.hasp_plate01_pagebutton2label
-    - platform: state
-      entity_id: 'binary_sensor.plate01_connected'
-      to: 'on'
-    - platform: homeassistant
-      event: start
-    action:
-    - service: mqtt.publish
-      data:
-        topic: 'hasp/plate01/command/json'
-        payload_template: >-
-          [{%- for i in range(1,10) -%}"p[{{i}}].b[2].txt=\"{{states.input_text.hasp_plate01_pagebutton2label.state}}\"",{%- endfor -%}]
+# # set page button text on each page to hasp-plate01-PageButton2Label
+#   - alias: hasp_plate01_p0_PageButton2_Text
+#     trigger:
+#     - platform: state
+#       entity_id: input_text.hasp_plate01_pagebutton2label
+#     - platform: state
+#       entity_id: 'binary_sensor.plate01_connected'
+#       to: 'on'
+#     - platform: homeassistant
+#       event: start
+#     action:
+#     - service: mqtt.publish
+#       data:
+#         topic: 'hasp/plate01/command/json'
+#         payload_template: >-
+#           [{%- for i in range(1,10) -%}"p[{{i}}].b[2].txt=\"{{states.input_text.hasp_plate01_pagebutton2label.state}}\"",{%- endfor -%}]
 
-# set page button text on each page to hasp-plate01-PageButton3Label
-  - alias: hasp_plate01_p0_PageButton3_Text
-    trigger:
-    - platform: state
-      entity_id: input_text.hasp_plate01_pagebutton3label
-    - platform: state
-      entity_id: 'binary_sensor.plate01_connected'
-      to: 'on'
-    - platform: homeassistant
-      event: start
-    action:
-    - service: mqtt.publish
-      data:
-        topic: 'hasp/plate01/command/json'
-        payload_template: >-
-          [{%- for i in range(1,10) -%}"p[{{i}}].b[3].txt=\"{{states.input_text.hasp_plate01_pagebutton3label.state}}\"",{%- endfor -%}]
+# # set page button text on each page to hasp-plate01-PageButton3Label
+#   - alias: hasp_plate01_p0_PageButton3_Text
+#     trigger:
+#     - platform: state
+#       entity_id: input_text.hasp_plate01_pagebutton3label
+#     - platform: state
+#       entity_id: 'binary_sensor.plate01_connected'
+#       to: 'on'
+#     - platform: homeassistant
+#       event: start
+#     action:
+#     - service: mqtt.publish
+#       data:
+#         topic: 'hasp/plate01/command/json'
+#         payload_template: >-
+#           [{%- for i in range(1,10) -%}"p[{{i}}].b[3].txt=\"{{states.input_text.hasp_plate01_pagebutton3label.state}}\"",{%- endfor -%}]
 
 ##############################################################################
 # Set page button colors across selected pages to show active page button

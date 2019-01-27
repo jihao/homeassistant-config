@@ -58,16 +58,16 @@ sensor:
       - signalStrength
       - haspIP
 
-input_text:
-  hasp_plate01_pagebutton1label:
-    name: plate01 Page 1 Label
-    icon: mdi:book-open-page-variant
-  hasp_plate01_pagebutton2label:
-    name: plate01 Page 2 Label
-    icon: mdi:book-open-page-variant
-  hasp_plate01_pagebutton3label:
-    name: plate01 Page 3 Label
-    icon: mdi:book-open-page-variant
+# input_text:
+#   hasp_plate01_pagebutton1label:
+#     name: plate01 Page 1 Label
+#     icon: mdi:book-open-page-variant
+#   hasp_plate01_pagebutton2label:
+#     name: plate01 Page 2 Label
+#     icon: mdi:book-open-page-variant
+#   hasp_plate01_pagebutton3label:
+#     name: plate01 Page 3 Label
+#     icon: mdi:book-open-page-variant
 
 input_number:
   hasp_plate01_pagebutton1page:
@@ -140,11 +140,11 @@ group:
     entities:
       - input_number.hasp_plate01_activepage
       - input_number.hasp_plate01_pagebutton1page
-      - input_text.hasp_plate01_pagebutton1label
+      # - input_text.hasp_plate01_pagebutton1label
       - input_number.hasp_plate01_pagebutton2page
-      - input_text.hasp_plate01_pagebutton2label
+      # - input_text.hasp_plate01_pagebutton2label
       - input_number.hasp_plate01_pagebutton3page
-      - input_text.hasp_plate01_pagebutton3label
+      # - input_text.hasp_plate01_pagebutton3label
   plate01_automations:
     name: plate01 automations
     view: no
@@ -163,18 +163,18 @@ automation:
       - service: homeassistant.turn_on
         data:
           entity_id: 'group.plate01_automations'
-      - service: input_text.set_value
-        data:
-          entity_id: 'input_text.hasp_plate01_pagebutton1label'
-          value: 'scenes'
-      - service: input_text.set_value
-        data:
-          entity_id: 'input_text.hasp_plate01_pagebutton2label'
-          value: 'status'
-      - service: input_text.set_value
-        data:
-          entity_id: 'input_text.hasp_plate01_pagebutton3label'
-          value: 'lights'
+      # - service: input_text.set_value
+      #   data:
+      #     entity_id: 'input_text.hasp_plate01_pagebutton1label'
+      #     value: 'scenes'
+      # - service: input_text.set_value
+      #   data:
+      #     entity_id: 'input_text.hasp_plate01_pagebutton2label'
+      #     value: 'status'
+      # - service: input_text.set_value
+      #   data:
+      #     entity_id: 'input_text.hasp_plate01_pagebutton3label'
+      #     value: 'lights'
       - service: input_number.set_value
         data:
           entity_id: 'input_number.hasp_plate01_pagebutton1page'
