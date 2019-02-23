@@ -13,31 +13,31 @@ automation:
     - service: mqtt.publish
       data:
         topic: 'hasp/plate01/command/p[3].b[4].font'
-        payload: '2'
+        payload: '6'
     - service: mqtt.publish
       data:
         topic: 'hasp/plate01/command/p[3].b[4].txt'
-        payload: '"Light 1"'
+        payload: '"厨房"'
     - service: mqtt.publish
       data:
         topic: 'hasp/plate01/command/p[3].b[5].font'
-        payload: '2'
+        payload: '6'
     - service: mqtt.publish
       data:
         topic: 'hasp/plate01/command/p[3].b[5].txt'
-        payload: '"Light 2"'
+        payload: '"卫生间"'
     - service: mqtt.publish
       data:
         topic: 'hasp/plate01/command/p[3].b[6].font'
-        payload: '2'
+        payload: '6'
     - service: mqtt.publish
       data:
         topic: 'hasp/plate01/command/p[3].b[6].txt'
-        payload: '"Light 3"'
+        payload: '"客厅"'
     - service: mqtt.publish
       data:
         topic: 'hasp/plate01/command/p[3].b[7].font'
-        payload: '2'
+        payload: '6'
 
   # Toggle light1 when p[3].b[4] pressed
   - alias: hasp_plate01_p3_ToggleLight1
@@ -240,7 +240,7 @@ automation:
         topic: 'hasp/plate01/command/p[3].b[7].txt'
         payload_template: >-
           {% if states.group.light_toggle_group.state == "on" -%}
-           "Lights Off"
+           "关灯 (全)"
           {%- else -%}
-           "Lights On"
+           "开灯 (全)"
           {%- endif %}

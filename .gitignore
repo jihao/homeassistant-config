@@ -14,4 +14,4 @@ known_devices.yaml
 ngrok
 emulated_hue_ids.json
 .idea/*
-__pycache__/*
+__pycache__/

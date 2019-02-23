@@ -88,16 +88,31 @@ automation:
     - service: mqtt.publish
       data_template:
         topic: 'hasp/plate01/command/lcdupdate'
-        payload: 'http://192.168.2.110:8123/local/HASwitchPlate-TJC3224T028_011.tft'
+        payload: 'http://192.168.2.110:8123/local/HASwitchPlate-TJC-Chinese.tft'
 
-  - alias: hasp_plate01_00_get_text
+  - alias: "hasp_plate01 升级D1 mini ESP固件"
     trigger: []
     condition:
+    # - condition: template
+    #   value_template: '{{ states.sensor.plate01_status.attributes.updateLcdAvailable == true }}'
     - condition: state
       entity_id: 'binary_sensor.plate01_connected'
       state: 'on'
     action:
     - service: mqtt.publish
       data_template:
-        topic: 'hasp/plate01/command/p[1].b[3].txt'
-        payload: ''
+        topic: 'hasp/plate01/command/espupdate'
+        payload: 'http://192.168.2.110:8123/local/HASwitchPlate.ino.d1_mini.bin'
+
+
+  # - alias: hasp_plate01_00_get_text
+  #   trigger: []
+  #   condition:
+  #   - condition: state
+  #     entity_id: 'binary_sensor.plate01_connected'
+  #     state: 'on'
+  #   action:
+  #   - service: mqtt.publish
+  #     data_template:
+  #       topic: 'hasp/plate01/command/p[1].b[3].txt'
+  #       payload: ''
