@@ -56,7 +56,7 @@ views:
                   height: 100px
 
               - type: custom:weather-card
-                entity_weather: weather.shanghai
+                entity_weather: weather.met_no
                 entity_sun: sun.sun
                 style:
                   top: 38%
@@ -631,7 +631,7 @@ views:
           - type: vertical-stack
             cards:
             - type: weather-forecast
-              entity: weather.shanghai
+              entity: weather.met_no
             - type: entities
               title: 空气质量
               entities:
