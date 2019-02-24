@@ -1,6 +1,10 @@
 resources:
-  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v0
-    type: js
+  - url: /customcards/github/custom-cards/tracker-card.js?track=true
+    type: module
+  - url: /customcards/github/maykar/compact-custom-header.js?track=true
+    type: module
+  # - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v0
+  #   type: js
   - url: /local/custom_ui/weather-card.js
     type: js
   - url: /local/custom_ui/datetime-card.js
@@ -33,6 +37,7 @@ views:
       - type: horizontal-stack
         cards:
           - type: custom:compact-custom-header
+      
           - type: picture-elements
             #image: /local/layouts/view_default_1280x740-flat2.png
             image: /local/layouts/home_1280x740.png
@@ -732,6 +737,7 @@ views:
   - title: 自动化
     icon: mdi:home-automation
     cards:
+    - type: custom:tracker-card
     - type: custom:monster-card
       show_empty: false
       card:

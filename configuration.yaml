@@ -45,6 +45,9 @@ mqtt:
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   # include_used_components: true
+  
+# https://github.com/custom-components/custom_updater/wiki/Installation
+custom_updater:
 
 # Discover some devices automatically
 discovery:
