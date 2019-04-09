@@ -17,12 +17,43 @@ homeassistant:
   # customize_glob:
   #   "switch.wall_switch_*":
   #     icon: mdi:lightbulb
-      
+  auth_providers:
+    - type: legacy_api_password
+      api_password: !secret api_password
+    - type: homeassistant
+  # # 整个domain进行配置
+  customize_domain:
+    automation:
+      rhass_hidden: true
+    climate:
+      rhass_hidden: true
+    cover:
+      rhass_hidden: true
+    fan:
+      rhass_hidden: true
+    light:
+      rhass_hidden: false
+    lock:
+      rhass_hidden: true
+    switch:
+      rhass_hidden: false
+    vacuum:
+      rhass_hidden: true
+    input_boolean:
+      rhass_hidden: true
+    media_player:
+      rhass_hidden: true
+    remote:
+      rhass_hidden: true
+    script:
+      rhass_hidden: true
+
 # Show links to resources in log and frontend
-introduction:
+# introduction:
 
 # Enables the frontend
 frontend:
+   themes: !include_dir_merge_named themes
 
 # Enables configuration UI
 config:
@@ -35,7 +66,12 @@ http:
 #   base_url: example.duckdns.org:8123
 
 mqtt:
+  broker: 192.168.2.110
+  username: hao
   password: !secret mqtt_password
+  # embedded:
+  #   port: 11883
+  #   password: !secret mqtt_password
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -79,8 +115,8 @@ recorder:
   include:
     entities:
       - sensor.illumination_livingroom
-      - sensor.temperature_158d00020d78e3
-      - sensor.humidity_158d00020d78e3
+      - sensor.temperature_livingroom
+      - sensor.humidity_livingroom
       - sensor.yr_symbol
       - sensor.waqi_shanghai_us_consulate_shanghai
       - sensor.waqi_city_average_shanghai
@@ -117,13 +153,13 @@ sensor:
     locations:
         - shanghai
 
-camera:
-  - platform: ffmpeg
-    name: DaFang
-    input: -rtsp_transport tcp -i rtsp://192.168.2.117:8554/unicast
+# camera:
+#   - platform: ffmpeg
+#     name: DaFang
+#     input: -rtsp_transport tcp -i rtsp://192.168.2.117:8554/unicast
   
-media_player:
-  - platform: vlc
+# media_player:
+#   - platform: vlc
   #- platform: braviatv
   #  host: 192.168.2.111
   #- platform: mpd
@@ -150,10 +186,19 @@ homekit:
       - light
     include_entities:
       - binary_sensor.switch_158d00026bb461
-      - sensor.humidity_158d00020d78e3
-      - sensor.temperature_158d00020d78e3
+      - sensor.humidity_livingroom
+      - sensor.temperature_livingroom
       - sensor.illumination_livingroom
 
+rokid_tts:
+  sn: "180001752008169"
+  webhook_id: Ex9oU0g56Z
+rokid_asr:
+  sn: "180001752008169"
+  webhook_id: Ex9oU0g56Z
+rokid_audio:
+  sn: "180001752008169"
+  webhook_id: Ex9oU0g56Z
 # Text to speech
 #tts:
 #  - platform: google

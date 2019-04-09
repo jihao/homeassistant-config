@@ -1,0 +1,89 @@
+
+
+home:
+  name: HOME2
+  view: true
+  # icon: mdi:home
+  entities:
+    - updater.updater
+    - sensor.date
+    - sensor.time
+    - sun.sun
+    - sensor.yr_symbol
+    - binary_sensor.door_window_sensor_158d000204b9d2
+    - binary_sensor.switch_158d00026bb461
+    - sensor.custom_card_tracker
+    - sensor.custom_component_tracker
+    - group.all_devices
+    - sensor.hao_iphone_battery_level
+    - sensor.hao_iphone_battery_state
+    - sensor.temperature_livingroom
+    - sensor.humidity_livingroom
+    - sensor.illumination_livingroom
+    - sensor.heweather_temperature
+    - sensor.heweather_humidity
+    - sensor.heweather_qlty
+    # ! Sensors above !
+    - group.weather
+    - group.suggestion
+    - group.hourlyforecast
+    - group.heweatheraqi
+    - weather.localweather
+    - weather.met_no
+    - group.all_switches
+
+Others:
+  name: Others
+  view: true
+  entities:
+    - group.all_devices
+    - group.all_switches
+    - group.all_lights
+    - group.all_devices
+    - group.all_scripts
+    - group.all_automations
+ 
+
+LED_EX:
+  name: 顶灯E1-E4
+  entities:
+    - light.led_e4_way1
+    - light.led_e4_way2
+    - light.led_e4_way3
+    - light.led_e4_way4
+
+
+
+LED_H:
+  name: 依次亮灯
+  entities:
+    - light.leds_a1
+    - light.leds_a2
+    - light.leds_a3
+    - light.leds_a4
+    - light.leds_a5
+
+# 测试
+entrance_1:
+  name: Entrance 1
+  entities:
+   - light.leds_a1
+   - light.leds_a2
+
+entrance_2:
+  name: Entrance 2
+  entities:
+   - light.leds_a3
+   - light.leds_a4
+
+LEDS_1003:
+  name: LEDS
+  view: true
+  entities:
+   - group.leds_a
+   - group.leds_b
+   - group.leds_c
+   - group.leds_d
+   - group.leds_e
+   - group.leds_f
+   - group.leds_g

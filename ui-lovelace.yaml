@@ -5,6 +5,7 @@ resources:
     type: module
   # - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v0
   #   type: js
+
   - url: /local/custom_ui/weather-card.js
     type: js
   - url: /local/custom_ui/datetime-card.js
@@ -25,6 +26,10 @@ resources:
     type: js
   - url: /local/custom_ui/light-toggle-card.js
     type: module
+  - url: /local/custom_ui/card-tools.js
+    type: js
+  - url: /local/custom_ui/theme-maker.js
+    type: js
 
 title: 我家
 
@@ -52,8 +57,8 @@ views:
                   width: 25%
 
               - type: custom:temp-humid-card
-                entity_temperature: sensor.temperature_158d00020d78e3
-                entity_humidity: sensor.humidity_158d00020d78e3
+                entity_temperature: sensor.temperature_livingroom
+                entity_humidity: sensor.humidity_livingroom
                 style:
                   top: 20%
                   left: 12.6%
@@ -425,7 +430,7 @@ views:
     cards:
       - type: vertical-stack
         cards:
-
+        - type: custom:compact-custom-header
         - type: custom:monster-card
           card:
             type: glance
@@ -681,57 +686,6 @@ views:
               aspect_ratio: 75%
 
 
-# Tab 天气
-  # - title: '天气2'
-  #   icon: mdi:weather-cloudy
-
-  #   cards:
-  #     - type: weather-forecast
-  #       entity: weather.yweather
-
-  #     - type: entities
-  #       title: 空气质量
-  #       entities:
-  #         - entity: sensor.waqi_shanghai_us_consulate_shanghai
-  #           name: AQI 上海美领馆
-  #         - type: custom:entity-attributes-card
-  #           entity: sensor.waqi_shanghai_us_consulate_shanghai
-  #           filter:
-  #             include:
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.*
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.dominentpol
-  #                 name: 主要污染物
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.nitrogen_dioxide
-  #                 name: 二氧化氮
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.ozone
-  #                 name: 臭氧
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.humidity
-  #                 name: 湿度
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.sulfur_dioxide
-  #                 name: 二氧化硫
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.co
-  #                 name: 一氧化碳
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.temperature
-  #                 name: 温度
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.time
-  #                 name: 更新时间
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.pressure
-  #                 name: 气压
-
-  #             exclude:
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.attribution
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.icon
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.hidden
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.unit_of_measurement
-  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.friendly_name
-      
-  #     - type: iframe
-  #       url: https://embed.windy.com/embed2.html
-  #       aspect_ratio: 75%
-  #       style: 
-  #         max-width: 100%
-
-
 
 
   - title: 自动化
@@ -812,6 +766,61 @@ views:
          width: 49%
 
 
-
+  - title: 测试
+    icon: mdi:home-automation
+    cards:
+    - type: custom:theme-maker
+    
 
        
+# Tab 天气
+  # - title: '天气2'
+  #   icon: mdi:weather-cloudy
+
+  #   cards:
+  #     - type: weather-forecast
+  #       entity: weather.yweather
+
+  #     - type: entities
+  #       title: 空气质量
+  #       entities:
+  #         - entity: sensor.waqi_shanghai_us_consulate_shanghai
+  #           name: AQI 上海美领馆
+  #         - type: custom:entity-attributes-card
+  #           entity: sensor.waqi_shanghai_us_consulate_shanghai
+  #           filter:
+  #             include:
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.*
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.dominentpol
+  #                 name: 主要污染物
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.nitrogen_dioxide
+  #                 name: 二氧化氮
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.ozone
+  #                 name: 臭氧
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.humidity
+  #                 name: 湿度
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.sulfur_dioxide
+  #                 name: 二氧化硫
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.co
+  #                 name: 一氧化碳
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.temperature
+  #                 name: 温度
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.time
+  #                 name: 更新时间
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.pressure
+  #                 name: 气压
+
+  #             exclude:
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.attribution
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.icon
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.hidden
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.unit_of_measurement
+  #               - key: sensor.waqi_shanghai_us_consulate_shanghai.friendly_name
+      
+  #     - type: iframe
+  #       url: https://embed.windy.com/embed2.html
+  #       aspect_ratio: 75%
+  #       style: 
+  #         max-width: 100%
+
+

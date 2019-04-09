@@ -16,3 +16,5 @@ emulated_hue_ids.json
 .idea/*
 __pycache__/
 www/github/
+.vscode/*
+*.mp3

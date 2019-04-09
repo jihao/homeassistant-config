@@ -1,0 +1,56 @@
+light:
+  - platform: mqtt
+    schema: json
+    name: "LED F1"
+    state_topic: "home/leds_f_d1"
+    command_topic: "home/leds_f_d1/set"
+    effect: true
+    effect_list: 
+      - solid  
+      - solid_0_9
+      - solid_10_19
+      - solid_20_29
+      - solid_30_39
+      - solid_40_49
+      - solid_50_59 
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  # - platform: mqtt
+  #   schema: json
+  #   name: "LED D2"
+  #   state_topic: "home/leds_f_d2"
+  #   command_topic: "home/leds_f_d2/set"
+  #   brightness: true
+  #   rgb: true
+  #   optimistic: false
+  #   qos: 0
+  # - platform: mqtt
+  #   schema: json
+  #   name: "LED D3"
+  #   state_topic: "home/leds_f_d5"
+  #   command_topic: "home/leds_f_d5/set"
+  #   brightness: true
+  #   rgb: true
+  #   optimistic: false
+  #   qos: 0
+  # - platform: mqtt
+  #   schema: json
+  #   name: "LED D4"
+  #   state_topic: "home/leds_f_d6"
+  #   command_topic: "home/leds_f_d6/set"
+  #   brightness: true
+  #   rgb: true
+  #   optimistic: false
+  #   qos: 0
+
+group:  
+  leds_f:
+    name: 顶灯F1
+    entities:
+    - light.led_f1
+    - script.step_by_step_on_f
+    # - light.led_f2
+    # - light.led_f3
+    # - light.led_f4

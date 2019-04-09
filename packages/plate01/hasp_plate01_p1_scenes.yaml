@@ -53,6 +53,15 @@ automation:
     action:
     - service: scene.turn_on
       entity_id: scene.lights_on
+    - service: mqtt.publish
+      data:
+        topic: 'hasp/plate01/command/p[1].b[4].bco'
+        payload_template: >-
+          {% if states.scene.lights_on.state == "on" -%}
+            {{ states.input_number.hasp_plate01_selectedbackgroundcolor.state | int }}
+          {%- else -%}
+            {{ states.input_number.hasp_plate01_unselectedbackgroundcolor.state | int }}
+          {%- endif %}
       
   # Trigger scene.daylight when p[1].b[5] pressed
   - alias: hasp_plate01_p1_SceneButton5

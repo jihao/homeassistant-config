@@ -1,0 +1,56 @@
+light:
+  - platform: mqtt
+    schema: json
+    name: "LED E1"
+    state_topic: "home/leds_e_d1"
+    command_topic: "home/leds_e_d1/set"
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  - platform: mqtt
+    schema: json
+    name: "LED E2"
+    state_topic: "home/leds_e_d2"
+    command_topic: "home/leds_e_d2/set"
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  - platform: mqtt
+    schema: json
+    name: "LED E3"
+    state_topic: "home/leds_e_d5"
+    command_topic: "home/leds_e_d5/set"
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  - platform: mqtt
+    schema: json
+    name: "LED E4"
+    state_topic: "home/leds_e_d6"
+    command_topic: "home/leds_e_d6/set"
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  - platform: mqtt
+    schema: json
+    name: "LED E5"
+    state_topic: "home/leds_e_d7"
+    command_topic: "home/leds_e_d7/set"
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+
+group:  
+  leds_e:
+    name: 顶灯E1-E5
+    entities:
+    - light.led_e1
+    - light.led_e2
+    - light.led_e3
+    - light.led_e4
+    - light.led_e5

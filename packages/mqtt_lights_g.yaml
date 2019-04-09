@@ -1,0 +1,41 @@
+light:
+  - platform: mqtt
+    schema: json
+    name: "LED G1"
+    state_topic: "home/leds_g_d1"
+    command_topic: "home/leds_g_d1/set"
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+
+
+script:
+  change_g1_bright:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.led_g1
+          brightness: 50
+
+automation:
+  - id: change_g1_bright
+    alias: '修改g1亮度'
+    trigger:
+      platform: state
+      entity_id: switch.wall_switch_right_158d00024c157a
+      from: 'off'
+      to: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.led_g1
+          brightness: 50
+
+group:  
+  leds_g:
+    name: 长灯带固件v1-G1
+    entities:
+    - light.led_g1
+    - script.change_g1_bright
+    - automation.change_g1_bright

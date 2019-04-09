@@ -1,0 +1,46 @@
+light:
+  - platform: mqtt
+    schema: json
+    name: "LED C1"
+    state_topic: "home/leds_c_d1"
+    command_topic: "home/leds_c_d1/set"
+    brightness: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  # - platform: mqtt
+  #   schema: json
+  #   name: "LED C2"
+  #   state_topic: "home/leds_c_d2"
+  #   command_topic: "home/leds_c_d2/set"
+  #   brightness: true
+  #   rgb: true
+  #   optimistic: false
+  #   qos: 0
+  # - platform: mqtt
+  #   schema: json
+  #   name: "LED C3"
+  #   state_topic: "home/leds_c_d5"
+  #   command_topic: "home/leds_c_d5/set"
+  #   brightness: true
+  #   rgb: true
+  #   optimistic: false
+  #   qos: 0
+  # - platform: mqtt
+  #   schema: json
+  #   name: "LED C4"
+  #   state_topic: "home/leds_c_d6"
+  #   command_topic: "home/leds_c_d6/set"
+  #   brightness: true
+  #   rgb: true
+  #   optimistic: false
+  #   qos: 0
+
+group:  
+  leds_c:
+    name: 柜灯C1
+    entities:
+    - light.led_c1
+    # - light.led_c2
+    # - light.led_c3
+    # - light.led_c4

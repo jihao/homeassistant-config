@@ -1,0 +1,218 @@
+jiahe_script:
+    sequence:
+      - service: rokid_audio.speak
+        data:
+          url: "http://192.168.2.110:8123/local/jiahe.mp3"
+      - delay: # Supports milliseconds, seconds, minutes, hours, days
+          milliseconds: 500
+      # This is written using the Script Syntax
+      - service: light.turn_off
+        data:
+          entity_id: light.leds_a1
+      - service: light.turn_off
+        data:
+          entity_id: light.leds_a2
+      - service: light.turn_off
+        data:
+          entity_id: light.leds_a3
+      - service: light.turn_off
+        data:
+          entity_id: light.leds_a4
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a1
+          brightness: 30  
+          effect: solid
+          rgb_color: [255, 191, 0] 
+      - delay: # Supports milliseconds, seconds, minutes, hours, days
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a2
+          brightness: 30  
+          effect: solid
+          rgb_color: [255, 191, 0] 
+      - delay: # Supports milliseconds, seconds, minutes, hours, days
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a3
+          brightness: 30  
+          effect: solid
+          rgb_color: [255, 191, 0] 
+      - delay: # Supports milliseconds, seconds, minutes, hours, days
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a4
+          brightness: 30  
+          effect: solid
+          rgb_color: [255, 191, 0] 
+      - delay: # Supports milliseconds, seconds, minutes, hours, days
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a1
+          effect: twinkle
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a2
+          effect: twinkle
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a3
+          effect: twinkle
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a4
+          effect: twinkle 
+      - delay: # Supports milliseconds, seconds, minutes, hours, days
+          milliseconds: 2000
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a1
+          effect: "police all"
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a2
+          effect: "police all"
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a3
+          effect: "police all"
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a4
+          effect: "police all" 
+      - delay: # Supports milliseconds, seconds, minutes, hours, days
+          milliseconds: 3000
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a1
+          effect: "bpm"
+          transition: 131
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a2
+          effect: "bpm"
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a3
+          effect: "bpm"
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_a4
+          effect: "bpm" 
+
+
+# 开灯脚本
+entrance_on:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: group.entrance_1
+          brightness: 120  
+          effect: solid
+          rgb_color: [122, 122, 52] 
+      - delay: 
+          milliseconds: 800
+      - service: light.turn_on
+        data:
+          entity_id: group.entrance_2
+          brightness: 120  
+          effect: solid
+          rgb_color: [122, 122, 52] 
+
+# 开灯脚本, 依次缓缓亮起    
+entrance_on2:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: group.entrance_1
+          transition: 2
+          brightness: 120  
+          rgb_color: [122, 122, 52] 
+      - delay: 
+          milliseconds: 800
+      - service: light.turn_on
+        data:
+          entity_id: group.entrance_2
+          transition: 2
+          brightness: 120  
+          rgb_color: [122, 122, 52] 
+    
+# 关灯脚本
+entrance_off:
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: group.entrance_2
+      - delay: 
+          milliseconds: 800
+      - service: light.turn_off
+        data:
+          entity_id: group.entrance_1
+
+step_by_step_on_f:
+    alias: "步进式开LED F1"
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.led_f1
+          brightness: 0  
+          effect: solid
+          # rgb_color: [255, 0, 0] 
+      - delay: 
+          milliseconds: 100
+      - service: light.turn_on
+        data:
+          entity_id: light.led_f1
+          brightness: 50  
+          effect: solid_0_9
+          # rgb_color: [0, 0, 255] 
+      - delay: 
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.led_f1
+          brightness: 50  
+          effect: solid_10_19
+          # rgb_color: [255, 0, 0] 
+      - delay: 
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.led_f1
+          brightness: 50  
+          effect: solid_20_29
+          # rgb_color: [0, 255, 0] 
+      - delay: 
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.led_f1
+          brightness: 50  
+          effect: solid_30_39
+          # rgb_color: [0, 0, 255] 
+      - delay: 
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.led_f1
+          brightness: 50  
+          effect: solid_40_49
+          # rgb_color: [255, 0, 0] 
+      - delay: 
+          milliseconds: 500
+      - service: light.turn_on
+        data:
+          entity_id: light.led_f1
+          brightness: 50  
+          effect: solid_50_59
+          # rgb_color: [0, 0, 255]
+      # 调成单色模式，正常的开关才能关灯，否则需要使用“步进式关”脚本 
+      - service: light.turn_on
+        data:
+          entity_id: light.led_f1
+          brightness: 50  
+          effect: solid  

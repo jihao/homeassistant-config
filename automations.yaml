@@ -250,3 +250,25 @@
       data:
         entity_id:
           - light.living_room
+
+- id: lights_on_step_by_step
+  alias: '步进式开灯'
+  trigger:
+    platform: state
+    entity_id: switch.wall_switch_right_158d00024c157a
+    from: 'off'
+    to: 'on'
+  action:
+    - service: script.turn_on
+      entity_id: script.entrance_on
+
+- id: lights_off_step_by_step
+  alias: '步进式关灯'
+  trigger:
+    platform: state
+    entity_id: switch.wall_switch_right_158d00024c157a
+    from: 'on'
+    to: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.entrance_off
