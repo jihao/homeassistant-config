@@ -54,3 +54,15 @@ group:
     - light.led_a3
     - light.led_a4
     - light.led_a5
+
+  entrance_1:
+    name: 柜灯A组1
+    entities:
+    - light.led_a1
+    - light.led_a2
+
+  entrance_2:
+    name: 柜灯A组2
+    entities:
+    - light.led_a3
+    - light.led_a4

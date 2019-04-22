@@ -5,17 +5,6 @@
 weather:
   - platform: met
 
-
-
-##############################################################################
-# Create a group for the lights
-group:
-  light_toggle_group:
-    name: Light Toggle Group
-    view: no
-    entities:
-      - switch.wall_switch_left_158d00024c157a
-      - switch.wall_switch_right_158d00024c157a
       
 scene:
 - name: Lights On

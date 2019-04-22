@@ -154,7 +154,7 @@ entrance_off:
           entity_id: group.entrance_1
 
 step_by_step_on_f:
-    alias: "步进式开LED F1"
+    alias: "步进式开V2固件 - LED F1"
     sequence:
       - service: light.turn_on
         data:
@@ -216,3 +216,110 @@ step_by_step_on_f:
           entity_id: light.led_f1
           brightness: 50  
           effect: solid  
+
+
+rainbow:
+    alias: 彩虹灯效
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a1
+          effect: rainbow
+
+scene1:
+    alias: 1 婴儿期
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a3
+          brightness: 100
+          # transition: 2 
+          # effect: solid
+          rgb_color: [255, 204, 102]
+      # 关灯transition有BUG，太慢了
+      - service: light.turn_off
+        data:
+          entity_id: light.leds_office_a1
+          transition: 1
+      - service: light.turn_off
+        data:
+          entity_id: light.leds_office_a2
+          transition: 2
+
+scene2:
+    alias: 2 夜起喂奶
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a2
+          brightness: 178 # 70%
+          transition: 2 # 2秒
+          effect: solid
+          rgb_color: [255, 204, 102]
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a3
+          brightness: 178 # 70%
+          transition: 2 # 2秒
+          effect: solid
+          rgb_color: [255, 204, 102]
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a4
+          brightness: 178 # 70%
+          transition: 2 # 2秒
+          effect: solid
+          rgb_color: [255, 204, 102]
+
+scene3:
+    alias: 3 夜起挤奶
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a2
+          brightness: 128 # 50%
+          transition: 2 # 2秒
+          # effect: solid
+          rgb_color: [255, 204, 102]
+
+scene4:
+    alias: 4 灯组全开
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a1
+          brightness: 55 # 100%
+          transition: 2 # 2秒
+          # effect: solid
+          rgb_color: [255, 255, 255]
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a2
+          brightness: 55 # 100%
+          transition: 2 # 2秒
+          # effect: solid
+          rgb_color: [255, 255, 255]
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a3
+          brightness: 55 # 100%
+          transition: 2 # 2秒
+          # effect: solid
+          rgb_color: [255, 255, 255]
+      - service: light.turn_on
+        data:
+          entity_id: light.leds_office_a4
+          brightness: 55 # 100%
+          transition: 2 # 2秒
+          # effect: solid
+          rgb_color: [255, 255, 255]
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.leds_office_a5
+      #     brightness: 255 # 100%
+      #     transition: 2 # 2秒
+      #     effect: solid
+      #     rgb_color: [255, 255, 255]
+      - service: switch.turn_on
+        data:
+          entity_id: switch.actuator 

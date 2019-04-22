@@ -52,32 +52,16 @@ LED_EX:
     - light.led_e4_way3
     - light.led_e4_way4
 
-
-
-LED_H:
-  name: 依次亮灯
+living_room_switch:
+  name: 客厅开关
+  view: no
   entities:
-    - light.leds_a1
-    - light.leds_a2
-    - light.leds_a3
-    - light.leds_a4
-    - light.leds_a5
+    - switch.wall_switch_left_158d00024c157a
+    - switch.wall_switch_right_158d00024c157a
 
-# 测试
-entrance_1:
-  name: Entrance 1
-  entities:
-   - light.leds_a1
-   - light.leds_a2
-
-entrance_2:
-  name: Entrance 2
-  entities:
-   - light.leds_a3
-   - light.leds_a4
 
 LEDS_1003:
-  name: LEDS
+  name: 1003 LEDS
   view: true
   entities:
    - group.leds_a

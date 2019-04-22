@@ -4,6 +4,31 @@ light:
     name: "LED G1"
     state_topic: "home/leds_g_d1"
     command_topic: "home/leds_g_d1/set"
+    effect: true
+    effect_list:
+      - bpm
+      - candy cane  
+      - confetti  
+      - cyclon rainbow  
+      - dots  
+      - fire  
+      - glitter  
+      - juggle  
+      - lightning
+      - noise  
+      - police all  
+      - police one  
+      - rainbow  
+      - rainbow with glitter  
+      - ripple  
+      - sinelon  
+      - solid  
+      - stepbystep_10_300
+      - stepbystep_10_500
+      - stepbystep_10_800
+      - stepbystep_20_300
+      - stepbystep_20_500
+      - stepbystep_20_800
     brightness: true
     rgb: true
     optimistic: false
@@ -34,7 +59,7 @@ automation:
 
 group:  
   leds_g:
-    name: 长灯带固件v1-G1
+    name: G1 ( Multiple V4固件 )
     entities:
     - light.led_g1
     - script.change_g1_bright

@@ -1,0 +1,194 @@
+switch:
+  - platform: mqtt
+    name: "OfficeDoor"
+    state_topic: "office/door1"
+    command_topic: "office/door1/set"
+  - platform: mqtt
+    name: "Office Switch X"
+    state_topic: "office/switch-x1"
+    command_topic: "office/switch-x1/set"
+  - platform: mqtt
+    name: "Office Switch 1"
+    state_topic: "home/switch_a_d1"
+    command_topic: "home/switch_a_d1/set"
+  - platform: mqtt
+    name: "Office Switch 2"
+    state_topic: "home/switch_a_d2"
+    command_topic: "home/switch_a_d2/set"
+    
+light:
+  - platform: mqtt
+    schema: json
+    name: "LEDS Office A1"
+    # entity_id: ledstrip_group1_m1
+    state_topic: "home/ledstrip_group1_m1"
+    command_topic: "home/ledstrip_group1_m1/set"
+    effect: true
+    effect_list:
+      - bpm
+      - candy cane  
+      - confetti  
+      - cyclon rainbow  
+      - dots  
+      - fire  
+      - glitter  
+      - juggle  
+      - lightning
+      - noise  
+      - police all  
+      - police one  
+      - rainbow  
+      - rainbow with glitter  
+      - ripple  
+      - sinelon  
+      - solid  
+      - twinkle  
+    brightness: true
+    # flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  - platform: mqtt
+    schema: json
+    name: "LEDS Office A2"
+    # entity_id: ledstrip_group1_m2
+    state_topic: "home/ledstrip_group1_m2"
+    command_topic: "home/ledstrip_group1_m2/set"
+    effect: true
+    effect_list:
+      - bpm
+      - candy cane  
+      - confetti  
+      - cyclon rainbow  
+      - dots  
+      - fire  
+      - glitter  
+      - juggle  
+      - lightning
+      - noise  
+      - police all  
+      - police one  
+      - rainbow  
+      - rainbow with glitter  
+      - ripple  
+      - sinelon  
+      - solid  
+      - twinkle  
+    brightness: true
+    # flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  - platform: mqtt
+    schema: json
+    name: "LEDS Office A3"
+    # entity_id: ledstrip_group1_m3
+    state_topic: "home/ledstrip_group1_m3"
+    command_topic: "home/ledstrip_group1_m3/set"
+    effect: true
+    effect_list:
+      - bpm
+      - candy cane  
+      - confetti  
+      - cyclon rainbow  
+      - dots  
+      - fire  
+      - glitter  
+      - juggle  
+      - lightning
+      - noise  
+      - police all  
+      - police one  
+      - rainbow  
+      - rainbow with glitter  
+      - ripple  
+      - sinelon  
+      - solid  
+      - twinkle  
+    brightness: true
+    # flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
+  - platform: mqtt
+    schema: json
+    name: "LEDS Office A4"
+    # entity_id: ledstrip_group1_m4
+    state_topic: "home/ledstrip_group1_m4"
+    command_topic: "home/ledstrip_group1_m4/set"
+    effect: true
+    effect_list:
+      - bpm
+      - candy cane  
+      - confetti  
+      - cyclon rainbow  
+      - dots  
+      - fire  
+      - glitter  
+      - juggle  
+      - lightning
+      - noise  
+      - police all  
+      - police one  
+      - rainbow  
+      - rainbow with glitter  
+      - ripple  
+      - sinelon  
+      - solid  
+      - twinkle  
+    brightness: true
+    # flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
+
+automation: 
+  - alias: "LED Office 动画速度"
+    initial_state: True
+    hide_entity: False
+    trigger:
+      - platform: state
+        entity_id: input_number.led_animation_speed_group
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "home/ledstrip_group1_m1/set"
+          payload: '{"transition":{{ trigger.to_state.state | int }}}'
+      - service: mqtt.publish
+        data_template:
+          topic: "home/ledstrip_group1_m2/set"
+          payload: '{"transition":{{ trigger.to_state.state | int }}}'
+      - service: mqtt.publish
+        data_template:
+          topic: "home/ledstrip_group1_m3/set"
+          payload: '{"transition":{{ trigger.to_state.state | int }}}'
+      - service: mqtt.publish
+        data_template:
+          topic: "home/ledstrip_group1_m4/set"
+          payload: '{"transition":{{ trigger.to_state.state | int }}}'
+      - service: mqtt.publish
+        data_template:
+          topic: "home/ledstrip_group1_m5/set"
+          payload: '{"transition":{{ trigger.to_state.state | int }}}'
+
+group:
+  LED_RENO_OFFICE:
+    name: Reno Office LED 固件
+    entities:
+      - light.leds_office_a1
+      - light.leds_office_a2
+      - light.leds_office_a3
+      - light.leds_office_a4
+    
+  RENO:
+    view: True
+    entities:
+      - group.LED_RENO_OFFICE
+      - switch.office_switch_1
+      - switch.office_switch_2
+      - switch.office_switch_x
+      - switch.officedoor
+      - script.scene1
+      - script.scene2
+      - script.scene3
+      - script.scene4
